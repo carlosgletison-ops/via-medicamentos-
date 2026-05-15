@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Via Medicamentos - Hub de Acesso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#EC1C24',
+                        'primary-dark': '#bb0013',
+                        surface: '#fcf9f8',
+                        'surface-card': 'rgba(255, 255, 255, 0.7)',
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(236, 28, 36, 0.3)',
+                        'glow-hover': '0 0 30px rgba(236, 28, 36, 0.6)',
+                        'card': '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fcf9f8;
+            color: #1c1b1b;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(236, 28, 36, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 85% 10%, rgba(236, 28, 36, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 50% 90%, rgba(236, 28, 36, 0.03) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .link-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+        }
+
+        .link-card:hover {
+            box-shadow: 0 15px 35px rgba(236, 28, 36, 0.15), 0 0 20px rgba(236, 28, 36, 0.1);
+            border-color: rgba(236, 28, 36, 0.3);
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(236,28,36,0.1) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .link-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Background Logo Watermark */
+        .bg-watermark {
+            position: fixed;
+            bottom: -5vw;
+            right: -5vw;
+            width: 70vw;
+            max-width: 600px;
+            opacity: 0.015;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Splash Screen */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background-color: #EC1C24;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-origin: top;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #EC1C24, #8e000c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        /* Icon container styling */
+        .icon-box {
+            background: linear-gradient(135deg, #EC1C24, #bb0013);
+            box-shadow: 0 5px 15px rgba(236, 28, 36, 0.3);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative selection:bg-primary selection:text-white overflow-hidden"> <!-- overflow hidden init to block scroll during splash -->
+
+    <!-- Preloader Splash Screen -->
+    <div id="splash-screen">
+        <img src="icone.png" alt="Via Medicamentos" class="w-48 md:w-56 drop-shadow-2xl relative z-10" id="splash-logo" style="filter: brightness(0) invert(1);">
+    </div>
+
+    <!-- Background Logo Watermark -->
+    <img src="icone-vermelho.png" alt="Via Medicamentos Watermark" class="bg-watermark">
+
+    <main class="flex-grow flex flex-col items-center w-full max-w-xl mx-auto px-6 py-12 relative z-10">
+        
+        <!-- HERO SECTION -->
+        <header class="w-full flex flex-col items-center text-center mb-12 hero-section">
+            <!-- Animated Logo -->
+            <div class="relative logo-container">
+                <img src="Logo Via Medicamentos.png" alt="Via Medicamentos" class="w-56 relative z-10 drop-shadow-md">
+            </div>
+            <p class="text-gray-600 font-medium text-lg max-w-sm px-4">
+                Conectando você à saúde com inovação e excelência.
+            </p>
+        </header>
+
+        <!-- LINK HUB SECTION -->
+        <section class="w-full space-y-6 flex flex-col links-container">
+            
+            <!-- Card 1: Site -->
+            <a href="https://viamedicamentos.com.br/" target="_blank" class="link-card block relative w-full bg-gradient-to-br from-[#FF333E] to-[#B8000A] rounded-[2.5rem] p-6 shadow-2xl group overflow-hidden border-t border-l border-white/30 hover:shadow-[0_20px_40px_rgba(236,28,36,0.3)] transition-all duration-500">
+                <!-- Abstract pattern -->
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+                
+                <div class="flex items-center justify-between gap-4 relative z-10 h-full">
+                    <div class="flex flex-col text-left text-white max-w-[65%] z-20">
+                        <span class="font-extrabold text-2xl md:text-3xl drop-shadow-lg leading-tight mb-3 group-hover:-translate-y-1 transition-transform duration-300">Conheça nosso site!</span>
+                        <span class="text-[11px] md:text-xs bg-white text-primary px-3 py-1.5 rounded-full w-max font-bold shadow-md flex items-center gap-2 group-hover:shadow-lg transition-shadow">
+                            <span class="relative flex h-2 w-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                            </span>
+                            viamedicamentos.com.br
+                        </span>
+                    </div>
+                    
+                    <!-- 3D Floating Icon Box -->
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/10 rounded-2xl rotate-6 blur-md"></div>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-white/40 to-white/5 rounded-2xl -rotate-3 group-hover:rotate-0 transition-transform duration-500 backdrop-blur-md border border-white/60 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8)] flex items-center justify-center z-10">
+                             <i class="fa-solid fa-laptop text-white text-3xl md:text-4xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Inner Glows -->
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-colors duration-500"></div>
+                <div class="absolute -left-12 -top-12 w-32 h-32 bg-white/20 rounded-full blur-2xl opacity-50"></div>
+            </a>
+
+            <!-- Card 2: Sobre -->
+            <a href="https://viamedicamentos.com.br/sobre/" target="_blank" class="link-card block relative w-full bg-gradient-to-br from-[#FF333E] to-[#B8000A] rounded-[2.5rem] p-6 shadow-2xl group overflow-hidden border-t border-l border-white/30 hover:shadow-[0_20px_40px_rgba(236,28,36,0.3)] transition-all duration-500">
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+                
+                <div class="flex items-center justify-between gap-4 relative z-10 h-full">
+                    <!-- 3D Floating Icon Box -->
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/10 rounded-2xl -rotate-6 blur-md"></div>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-white/40 to-white/5 rounded-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500 backdrop-blur-md border border-white/60 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8)] flex items-center justify-center z-10">
+                             <img src="icone.png" alt="Icone Via Medicamentos" class="w-12 h-12 md:w-14 md:h-14 object-contain drop-shadow-md" style="filter: brightness(0) invert(1);">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col text-right text-white max-w-[65%] z-20 items-end">
+                        <span class="font-extrabold text-2xl md:text-3xl drop-shadow-lg leading-tight group-hover:-translate-y-1 transition-transform duration-300">Conheça<br>mais sobre<br>quem somos!</span>
+                    </div>
+                </div>
+                
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-colors duration-500"></div>
+                <div class="absolute -left-12 -top-12 w-32 h-32 bg-white/20 rounded-full blur-2xl opacity-50"></div>
+            </a>
+
+            <!-- Card 3: WhatsApp Demontier -->
+            <a href="https://wa.me/558898190858" target="_blank" class="link-card block relative w-full bg-gradient-to-br from-[#FF333E] to-[#B8000A] rounded-[2.5rem] p-6 shadow-2xl group overflow-hidden border-t border-l border-white/30 hover:shadow-[0_20px_40px_rgba(236,28,36,0.3)] transition-all duration-500">
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+                
+                <div class="flex items-center justify-between gap-4 relative z-10 h-full">
+                    <div class="flex flex-col text-left text-white max-w-[65%] z-20">
+                        <span class="font-extrabold text-2xl md:text-3xl drop-shadow-lg leading-tight mb-3 group-hover:-translate-y-1 transition-transform duration-300">Fale comigo<br>no WhatsApp!</span>
+                        <span class="text-[11px] md:text-xs bg-white text-primary px-3 py-1.5 rounded-full w-max font-bold shadow-md flex items-center gap-2 group-hover:shadow-lg transition-shadow">
+                            Demontier
+                        </span>
+                    </div>
+                    
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/15 rounded-full rotate-6 blur-md"></div>
+                        <div class="absolute inset-0 rounded-full overflow-hidden border-[4px] border-white shadow-[0_0_20px_rgba(255,255,255,0.3)] z-10">
+                            <img src="demontier.jpg" alt="Demontier" class="w-full h-full object-cover object-[center_20%]">
+                        </div>
+                        <!-- Whatsapp Mini Badge -->
+                        <div class="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full border-2 border-white flex items-center justify-center shadow-lg z-20">
+                            <i class="fa-brands fa-whatsapp text-white text-lg"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-colors duration-500"></div>
+            </a>
+
+            <!-- Card 4: WhatsApp Caio -->
+            <a href="https://wa.me/558896641852" target="_blank" class="link-card block relative w-full bg-gradient-to-br from-[#FF333E] to-[#B8000A] rounded-[2.5rem] p-6 shadow-2xl group overflow-hidden border-t border-l border-white/30 hover:shadow-[0_20px_40px_rgba(236,28,36,0.3)] transition-all duration-500">
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+                
+                <div class="flex items-center justify-between gap-4 relative z-10 h-full">
+                    <div class="flex flex-col text-left text-white max-w-[65%] z-20">
+                        <span class="font-extrabold text-2xl md:text-3xl drop-shadow-lg leading-tight mb-3 group-hover:-translate-y-1 transition-transform duration-300">Fale comigo<br>no WhatsApp!</span>
+                        <span class="text-[11px] md:text-xs bg-white text-primary px-3 py-1.5 rounded-full w-max font-bold shadow-md flex items-center gap-2 group-hover:shadow-lg transition-shadow">
+                            Caio Vinicius
+                        </span>
+                    </div>
+                    
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/15 rounded-full rotate-6 blur-md"></div>
+                        <div class="absolute inset-0 rounded-full overflow-hidden border-[4px] border-white shadow-[0_0_20px_rgba(255,255,255,0.3)] z-10">
+                            <img src="caio vinicius.jpg" alt="Caio Vinicius" class="w-full h-full object-cover object-[center_20%]">
+                        </div>
+                        <div class="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full border-2 border-white flex items-center justify-center shadow-lg z-20">
+                            <i class="fa-brands fa-whatsapp text-white text-lg"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-colors duration-500"></div>
+            </a>
+
+            <!-- Card 5: WhatsApp Ciro -->
+            <a href="https://wa.me/558596674500" target="_blank" class="link-card block relative w-full bg-gradient-to-br from-[#FF333E] to-[#B8000A] rounded-[2.5rem] p-6 shadow-2xl group overflow-hidden border-t border-l border-white/30 hover:shadow-[0_20px_40px_rgba(236,28,36,0.3)] transition-all duration-500">
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+                
+                <div class="flex items-center justify-between gap-4 relative z-10 h-full">
+                    <div class="flex flex-col text-left text-white max-w-[65%] z-20">
+                        <span class="font-extrabold text-2xl md:text-3xl drop-shadow-lg leading-tight mb-3 group-hover:-translate-y-1 transition-transform duration-300">Fale comigo<br>no WhatsApp!</span>
+                        <span class="text-[11px] md:text-xs bg-white text-primary px-3 py-1.5 rounded-full w-max font-bold shadow-md flex items-center gap-2 group-hover:shadow-lg transition-shadow">
+                            Ciro
+                        </span>
+                    </div>
+                    
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/15 rounded-full rotate-6 blur-md"></div>
+                        <div class="absolute inset-0 rounded-full overflow-hidden border-[4px] border-white shadow-[0_0_20px_rgba(255,255,255,0.3)] z-10">
+                            <img src="ciro.jpg" alt="Ciro" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full border-2 border-white flex items-center justify-center shadow-lg z-20">
+                            <i class="fa-brands fa-whatsapp text-white text-lg"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-colors duration-500"></div>
+            </a>
+
+            <!-- Card 6: WhatsApp Caio Sergio -->
+            <a href="https://wa.me/558596674499" target="_blank" class="link-card block relative w-full bg-gradient-to-br from-[#FF333E] to-[#B8000A] rounded-[2.5rem] p-6 shadow-2xl group overflow-hidden border-t border-l border-white/30 hover:shadow-[0_20px_40px_rgba(236,28,36,0.3)] transition-all duration-500">
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+                
+                <div class="flex items-center justify-between gap-4 relative z-10 h-full">
+                    <div class="flex flex-col text-left text-white max-w-[65%] z-20">
+                        <span class="font-extrabold text-2xl md:text-3xl drop-shadow-lg leading-tight mb-3 group-hover:-translate-y-1 transition-transform duration-300">Fale comigo<br>no WhatsApp!</span>
+                        <span class="text-[11px] md:text-xs bg-white text-primary px-3 py-1.5 rounded-full w-max font-bold shadow-md flex items-center gap-2 group-hover:shadow-lg transition-shadow">
+                            Caio Sergio
+                        </span>
+                    </div>
+                    
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/15 rounded-full rotate-6 blur-md"></div>
+                        <div class="absolute inset-0 rounded-full overflow-hidden border-[4px] border-white shadow-[0_0_20px_rgba(255,255,255,0.3)] z-10">
+                            <img src="caio sergio.jpg" alt="Caio Sergio" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full border-2 border-white flex items-center justify-center shadow-lg z-20">
+                            <i class="fa-brands fa-whatsapp text-white text-lg"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-colors duration-500"></div>
+            </a>
+
+            <!-- Card 7: Produtos -->
+            <a href="https://viamedicamentos.com.br/produtos/" target="_blank" class="link-card block relative w-full bg-gradient-to-br from-[#FF333E] to-[#B8000A] rounded-[2.5rem] p-6 shadow-2xl group overflow-hidden border-t border-l border-white/30 hover:shadow-[0_20px_40px_rgba(236,28,36,0.3)] transition-all duration-500">
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+                
+                <div class="flex items-center justify-between gap-4 relative z-10 h-full">
+                    <!-- 3D Floating Icon Box -->
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/10 rounded-2xl -rotate-6 blur-md"></div>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-white/40 to-white/5 rounded-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500 backdrop-blur-md border border-white/60 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8)] flex items-center justify-center z-10">
+                             <i class="fa-solid fa-shield-heart text-white text-4xl md:text-5xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col text-right text-white max-w-[65%] z-20 items-end">
+                        <span class="font-extrabold text-2xl md:text-3xl drop-shadow-lg leading-tight group-hover:-translate-y-1 transition-transform duration-300">Conheça<br>nossos<br>produtos!</span>
+                    </div>
+                </div>
+                
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-colors duration-500"></div>
+                <div class="absolute -left-12 -top-12 w-32 h-32 bg-white/20 rounded-full blur-2xl opacity-50"></div>
+            </a>
+
+            <!-- Card 8: Via Summit -->
+            <a href="viasummit.html" class="link-card block relative w-full bg-gradient-to-br from-[#FF333E] to-[#B8000A] rounded-[2.5rem] p-6 shadow-2xl group overflow-hidden border-t border-l border-white/30 hover:shadow-[0_20px_40px_rgba(236,28,36,0.3)] transition-all duration-500">
+                <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+                
+                <div class="flex items-center justify-between gap-4 relative z-10 h-full">
+                    <div class="flex flex-col text-left text-white max-w-[65%] z-20">
+                        <span class="font-extrabold text-2xl md:text-3xl drop-shadow-lg leading-tight mb-3 group-hover:-translate-y-1 transition-transform duration-300">Conheça o<br>Via Summit!</span>
+                        <span class="text-[11px] md:text-xs bg-white text-primary px-3 py-1.5 rounded-full w-max font-bold shadow-md flex items-center gap-2 group-hover:shadow-lg transition-shadow">
+                            <span class="relative flex h-2 w-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                            </span>
+                            Novo evento
+                        </span>
+                    </div>
+                    
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/10 rounded-2xl rotate-6 blur-md"></div>
+                        <div class="absolute inset-0 bg-white rounded-2xl -rotate-3 group-hover:rotate-0 transition-transform duration-500 border border-gray-100 shadow-[0_4px_15px_rgba(0,0,0,0.1)] flex items-center justify-center z-10">
+                             <img src="via summit.png" alt="Via Summit" class="w-14 h-14 md:w-16 md:h-16 object-contain">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-colors duration-500"></div>
+                <div class="absolute -left-12 -top-12 w-32 h-32 bg-white/20 rounded-full blur-2xl opacity-50"></div>
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full max-w-xl mx-auto px-6 pb-8 pt-4 flex flex-col items-center relative z-10">
+        <div class="flex gap-4 mb-6">
+            <a href="#" class="w-10 h-10 rounded-full bg-white shadow-sm border border-gray-200 flex items-center justify-center text-gray-600 hover:text-primary hover:border-primary hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
+                <i class="fa-brands fa-instagram text-lg"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white shadow-sm border border-gray-200 flex items-center justify-center text-gray-600 hover:text-primary hover:border-primary hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
+                <i class="fa-brands fa-linkedin-in text-lg"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white shadow-sm border border-gray-200 flex items-center justify-center text-gray-600 hover:text-primary hover:border-primary hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
+                <i class="fa-brands fa-facebook-f text-lg"></i>
+            </a>
+        </div>
+        <p class="text-xs text-gray-400 font-medium">© 2024 Via Medicamentos. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- GSAP & Vanilla Tilt for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // GSAP Entry Animations
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    document.body.classList.remove("overflow-hidden"); // Restore scroll after intro
+                }
+            });
+            
+            // Splash Screen Animation (Preloader)
+            tl.from("#splash-logo", { scale: 0, rotation: -90, opacity: 0, duration: 1, ease: "back.out(1.5)" })
+              .to("#splash-logo", { rotation: 90, scale: 0, opacity: 0, duration: 0.7, ease: "back.in(1.5)", delay: 0.6 })
+              .to("#splash-screen", { yPercent: -100, duration: 0.8, ease: "power4.inOut" }, "-=0.1")
+              .set("#splash-screen", { display: "none" })
+
+            // Hero animation (flows seamlessly from splash)
+            tl.from(".logo-container", { y: -30, opacity: 0, duration: 0.8, ease: "back.out(1.5)" }, "-=0.4")
+              .from("header h1", { y: 20, opacity: 0, duration: 0.6, ease: "power3.out" }, "-=0.4")
+              .from("header p", { y: 20, opacity: 0, duration: 0.6, ease: "power3.out" }, "-=0.4");
+
+            // Links stagger animation
+            tl.from(".link-card", {
+                y: 40,
+                opacity: 0,
+                duration: 0.7,
+                stagger: 0.1,
+                ease: "back.out(1.2)",
+                clearProps: "all" // Important so it doesn't conflict with hover transforms
+            }, "-=0.2");
+
+            tl.from("footer", { opacity: 0, y: 20, duration: 0.6 }, "-=0.2");
+
+            // 3D Tilt Effect on Desktop Hover
+            const cards = document.querySelectorAll('.link-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    // Only apply 3D effect on non-touch devices basically
+                    if(window.innerWidth > 768) {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left; // x position within the element.
+                        const y = e.clientY - rect.top;  // y position within the element.
+                        
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        const rotateX = ((y - centerY) / centerY) * -5; // max rotation 5deg
+                        const rotateY = ((x - centerX) / centerX) * 5;
+
+                        gsap.to(card, {
+                            rotateX: rotateX,
+                            rotateY: rotateY,
+                            transformPerspective: 1000,
+                            ease: "power1.out",
+                            duration: 0.3
+                        });
+                    }
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {
+                        rotateX: 0,
+                        rotateY: 0,
+                        ease: "power3.out",
+                        duration: 0.5
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
