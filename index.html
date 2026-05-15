@@ -382,25 +382,25 @@
             });
             
             // Splash Screen Animation (Preloader)
-            tl.from("#splash-logo", { scale: 0, rotation: -90, opacity: 0, duration: 1, ease: "back.out(1.5)" })
-              .to("#splash-logo", { rotation: 90, scale: 0, opacity: 0, duration: 0.7, ease: "back.in(1.5)", delay: 0.6 })
-              .to("#splash-screen", { yPercent: -100, duration: 0.8, ease: "power4.inOut" }, "-=0.1")
+            tl.from("#splash-logo", { scale: 0, rotation: -90, opacity: 0, duration: 0.8, ease: "back.out(1.5)" })
+              .to("#splash-logo", { rotation: 90, scale: 0, opacity: 0, duration: 0.5, ease: "back.in(1.5)", delay: 0.3 })
+              .to("#splash-screen", { yPercent: -100, duration: 0.6, ease: "power4.inOut" }, "-=0.1")
               .set("#splash-screen", { display: "none" })
 
             // Hero animation (flows seamlessly from splash)
-            tl.from(".logo-container", { y: -30, opacity: 0, duration: 0.8, ease: "back.out(1.5)" }, "-=0.4")
-              .from("header h1", { y: 20, opacity: 0, duration: 0.6, ease: "power3.out" }, "-=0.4")
-              .from("header p", { y: 20, opacity: 0, duration: 0.6, ease: "power3.out" }, "-=0.4");
+            tl.from(".logo-container", { y: -30, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, "-=0.4")
+              .from("header h1", { y: 20, opacity: 0, duration: 0.5, ease: "power3.out" }, "-=0.4")
+              .from("header p", { y: 20, opacity: 0, duration: 0.5, ease: "power3.out" }, "-=0.4");
 
             // Links stagger animation
             tl.from(".link-card", {
                 y: 40,
                 opacity: 0,
-                duration: 0.7,
-                stagger: 0.1,
+                duration: 0.5,
+                stagger: 0.05,
                 ease: "back.out(1.2)",
                 clearProps: "all" // Important so it doesn't conflict with hover transforms
-            }, "-=0.2");
+            }, "-=0.6");
 
             tl.from("footer", { opacity: 0, y: 20, duration: 0.6 }, "-=0.2");
 
